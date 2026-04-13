@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: devsync-mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - devsync-network
+
+  backend:
+    build:
+      context: ./DevSync-Backend-main
+    container_name: devsync-backend
+    restart: unless-stopped
+    env_file:
+      - ./DevSync-Backend-main/.env
+    environment:
+      - MONGO_DB_URL=mongodb://mongo:27017/devsync
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+    networks:
+      - devsync-network
+
+  frontend:
+    build:
+      context: ./DevSync-Frontend-main/DevSync-Frontend-main
+    container_name: devsync-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - devsync-network
+
+volumes:
+  mongo_data:
+
+networks:
+  devsync-network:
+    driver: bridge
