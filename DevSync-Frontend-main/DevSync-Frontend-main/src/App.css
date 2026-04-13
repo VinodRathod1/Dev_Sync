@@ -1,0 +1,61 @@
+[contenteditable][placeholder]:empty:before {
+  content: attr(placeholder);
+  position: absolute;
+  background-color: transparent;
+}
+.entranceAnimate{
+animation: bgChange 1s forwards ease ;
+}
+.scrollEffect{
+animation: scrollBounce 1s infinite ease-in-out;
+}
+.homeBgAnimate{
+animation: bgChangeHome 1s forwards ease;
+}
+.bgReveal{
+  animation: bgChangeReveal 1.5s forwards ease;
+}
+.blurEffect{
+  pointer-events: none;
+  background: linear-gradient(rgb(255, 255, 255),transparent);
+  backdrop-filter: blur(.5px);
+}
+@keyframes bgChange {
+from{
+  background-color: white;
+  opacity:0%;
+}
+to{
+  background-color: rgb(29, 78, 216);
+  opacity:100%;
+}
+}
+@keyframes bgChangeReveal {
+  from{
+    opacity:0%;
+  }
+  to{
+    opacity:100%;
+  }
+  }
+@keyframes bgChangeHome {
+from{
+  background-color:rgb(29, 78, 216);
+
+}
+to{
+  background-color: white ;
+
+}
+}
+@keyframes scrollBounce {
+  0%{
+    transform: translate(0px);
+  }
+  50%{
+    transform: translateY(10px);
+  } 
+  100%{
+    transform: translate(0px);
+  }
+}
