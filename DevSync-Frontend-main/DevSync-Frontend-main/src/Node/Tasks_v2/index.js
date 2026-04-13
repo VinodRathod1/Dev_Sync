@@ -50,14 +50,14 @@ export default function Tasks(props){
                 title:task, 
                 projectID:projectId, 
                 nodeID:props.nodeID, 
-                taskID:taskList.length+1,
+                taskID:Date.now(),
                 isAssigned:false,
                 isCompleted:false, 
                 assignedTo:"Unassigned"
 
             },{ headers: { Authorization:localStorage.getItem('jwtToken') } }).then(res=>{
                 
-                setTaskList(list=>[...list,<Item team={props.team} nodeID={props.nodeID} taskID={taskList.length+1} projectID={projectId}  setTasksDone={setDone} isCompleted={false} task={task} isAssigned={false} assigned="Unassigned"/>])
+                setTaskList(list=>[...list,<Item team={props.team} nodeID={props.nodeID} taskID={Date.now()} projectID={projectId}  setTasksDone={setDone} isCompleted={false} task={task} isAssigned={false} assigned="Unassigned"/>])
                 setAdding(false);
 
 
